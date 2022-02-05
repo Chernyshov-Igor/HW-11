@@ -28,6 +28,7 @@ class ViewController: UIViewController {
 
     private lazy var secondStackView =  createHorisontalStackView()
     private lazy var thirdStackView =  createHorisontalStackView()
+    private lazy var fourthStackView =  createHorisontalStackView()
 
 
 //     MARK: - Life cycle
@@ -63,6 +64,7 @@ class ViewController: UIViewController {
         secondStackView.addArrangedSubview(bigButton)
 
         parentStackView.addArrangedSubview(thirdStackView)
+        parentStackView.addArrangedSubview(fourthStackView)
     }
 
     private func setupLayout() {
