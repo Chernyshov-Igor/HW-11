@@ -9,11 +9,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+//     MARK: - Create stackView()
+
+
+// MARK: - Life cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
 
+    private func setupView() {
+
+    }
+
+    private func setupHierarchy() {
+
+    }
+
+    private func setupLayout() {
+
+    }
+
+//    MARK: - Private func
+
+
+//    MARK: - enum
 
 }
-
