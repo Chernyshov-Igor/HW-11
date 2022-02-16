@@ -19,17 +19,16 @@ class ViewController: UIViewController {
         return stackView
     }()
 
-    private lazy var firstStackView = createHorisontalStackView()
+    private lazy var photoAndNameStackView = createHorisontalStackView()
 
-    private lazy var firstPointFirstStackView = createHorisontalStackView()
-    private lazy var firstPointTwoStackView = createVerticalStackView()
-    private lazy var firstEmptyOneStackView = createVerticalStackView()
-    private lazy var firstEmptyTwoStackView = createVerticalStackView()
+    private lazy var photoStackView = createHorisontalStackView()
+    private lazy var nameStackView = createVerticalStackView()
+    private lazy var aboveNameEmptyStackView = createVerticalStackView()
+    private lazy var underNameEmptyStackView = createVerticalStackView()
 
-    private lazy var secondStackView =  createHorisontalStackView()
-    private lazy var thirdStackView =  createHorisontalStackView()
-    private lazy var fourthStackView =  createVerticalStackView()
-    private lazy var fivethStackView = createVerticalStackView()
+    private lazy var fourButtonsStackView = createHorisontalStackView()
+    private lazy var infoButtonsStackView = createVerticalStackView()
+    private lazy var bottomEmptyStackView = createVerticalStackView()
 
 //     MARK: - Life cycle
 
@@ -48,38 +47,34 @@ class ViewController: UIViewController {
     private func setupHierarchy() {
         view.addSubview(parentStackView)
 
-        parentStackView.addArrangedSubview(firstStackView)
-
-        firstStackView.addArrangedSubview(firstPointFirstStackView)
-        firstStackView.addArrangedSubview(firstPointTwoStackView)
-
-        firstPointFirstStackView.addArrangedSubview(picMain)
-        firstPointTwoStackView.addArrangedSubview(firstEmptyOneStackView)
-        firstPointTwoStackView.addArrangedSubview(myName)
-        firstPointTwoStackView.addArrangedSubview(statusButton)
-        firstPointTwoStackView.addArrangedSubview(onlineLabel)
-        firstPointTwoStackView.addArrangedSubview(firstEmptyTwoStackView)
-
-        parentStackView.addArrangedSubview(secondStackView)
-        secondStackView.addArrangedSubview(bigButton)
-
-        parentStackView.addArrangedSubview(thirdStackView)
-        thirdStackView.addArrangedSubview(storyButton)
-        thirdStackView.addArrangedSubview(noteButton)
-        thirdStackView.addArrangedSubview(photoButton)
-        thirdStackView.addArrangedSubview(clipButton)
+        parentStackView.addArrangedSubview(photoAndNameStackView)
+        photoAndNameStackView.addArrangedSubview(picMain)
+        photoAndNameStackView.addArrangedSubview(nameStackView)
 
 
-        parentStackView.addArrangedSubview(fourthStackView)
-        fourthStackView.addHorizontalSeparators(color: .gray)
-        fourthStackView.addArrangedSubview(cityButton)
-        fourthStackView.addArrangedSubview(subsButton)
-        fourthStackView.addArrangedSubview(workButton)
-        fourthStackView.addArrangedSubview(giftButton)
-        fourthStackView.addArrangedSubview(infoButton)
+        nameStackView.addArrangedSubview(aboveNameEmptyStackView)
+        nameStackView.addArrangedSubview(myName)
+        nameStackView.addArrangedSubview(statusButton)
+        nameStackView.addArrangedSubview(onlineLabel)
+        nameStackView.addArrangedSubview(underNameEmptyStackView)
 
-        parentStackView.addArrangedSubview(fivethStackView)
+        parentStackView.addArrangedSubview(bigButton)
 
+        parentStackView.addArrangedSubview(fourButtonsStackView)
+        fourButtonsStackView.addArrangedSubview(storyButton)
+        fourButtonsStackView.addArrangedSubview(noteButton)
+        fourButtonsStackView.addArrangedSubview(photoButton)
+        fourButtonsStackView.addArrangedSubview(clipButton)
+
+        parentStackView.addArrangedSubview(infoButtonsStackView)
+        infoButtonsStackView.addHorizontalSeparators(color: .gray)
+        infoButtonsStackView.addArrangedSubview(cityButton)
+        infoButtonsStackView.addArrangedSubview(subsButton)
+        infoButtonsStackView.addArrangedSubview(workButton)
+        infoButtonsStackView.addArrangedSubview(giftButton)
+        infoButtonsStackView.addArrangedSubview(infoButton)
+
+        parentStackView.addArrangedSubview(bottomEmptyStackView)
     }
 
     private func setupLayout() {
@@ -91,41 +86,35 @@ class ViewController: UIViewController {
         parentStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25).isActive = true
         parentStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50).isActive = true
 
-        firstStackView.topAnchor.constraint(equalTo: parentStackView.topAnchor, constant: 0).isActive = true
-        firstStackView.heightAnchor.constraint(equalToConstant: 130).isActive = true
-        firstPointTwoStackView.leftAnchor.constraint(equalTo: firstPointFirstStackView.rightAnchor, constant: 10).isActive = true
+        photoAndNameStackView.topAnchor.constraint(equalTo: parentStackView.topAnchor, constant: 0).isActive = true
+        photoAndNameStackView.heightAnchor.constraint(equalToConstant: 130).isActive = true
+        nameStackView.leftAnchor.constraint(equalTo: picMain.rightAnchor, constant: 10).isActive = true
+        picMain.translatesAutoresizingMaskIntoConstraints = false
+        picMain.widthAnchor.constraint(equalToConstant: 130).isActive = true
 
-        statusButton.centerYAnchor.constraint(equalTo: firstPointFirstStackView.centerYAnchor).isActive = true
-        statusButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        statusButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
+        statusButton.centerYAnchor.constraint(equalTo: picMain.centerYAnchor).isActive = true
         statusButton.contentHorizontalAlignment = .left
-        myName.bottomAnchor.constraint(equalTo: statusButton.topAnchor).isActive = true
-        myName.leftAnchor.constraint(equalTo: firstPointTwoStackView.leftAnchor).isActive = true
-        onlineLabel.topAnchor.constraint(equalTo: statusButton.bottomAnchor).isActive = true
-        onlineLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        onlineLabel.addTrailing(image: picOnline!)
+        onlineLabel.addTrailing(image: picOnline)
 
-        bigButton.topAnchor.constraint(equalTo: firstStackView.bottomAnchor, constant: 10).isActive = true
+        bigButton.topAnchor.constraint(equalTo: photoAndNameStackView.bottomAnchor, constant: 10).isActive = true
         bigButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
-        firstPointFirstStackView.widthAnchor.constraint(equalToConstant: 130).isActive = true
+        photoStackView.widthAnchor.constraint(equalToConstant: 130).isActive = true
 
-        thirdStackView.distribution = .equalSpacing
-        thirdStackView.translatesAutoresizingMaskIntoConstraints = false
+        fourButtonsStackView.distribution = .equalSpacing
+        fourButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        storyButton.widthAnchor.constraint(equalTo: thirdStackView.widthAnchor, multiplier: 0.25).isActive = true
-        noteButton.widthAnchor.constraint(equalTo: thirdStackView.widthAnchor, multiplier: 0.25).isActive = true
-        photoButton.widthAnchor.constraint(equalTo: thirdStackView.widthAnchor, multiplier: 0.25).isActive = true
-        clipButton.widthAnchor.constraint(equalTo: thirdStackView.widthAnchor, multiplier: 0.25).isActive = true
+        storyButton.widthAnchor.constraint(equalTo: fourButtonsStackView.widthAnchor, multiplier: 0.25).isActive = true
+        noteButton.widthAnchor.constraint(equalTo: fourButtonsStackView.widthAnchor, multiplier: 0.25).isActive = true
+        photoButton.widthAnchor.constraint(equalTo: fourButtonsStackView.widthAnchor, multiplier: 0.25).isActive = true
+        clipButton.widthAnchor.constraint(equalTo: fourButtonsStackView.widthAnchor, multiplier: 0.25).isActive = true
 
-        let fourthButtons = [cityButton, subsButton, workButton, giftButton, infoButton]
-        fourthButtons.forEach {
-            $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        infoButtonsStackView.spacing = 15
+        let infoButtons = [cityButton, subsButton, workButton, giftButton, infoButton]
+        for button in infoButtons {
+            guard button.titleLabel?.text != nil else { continue }
+            button.imageView?.trailingAnchor.constraint(equalTo: button.titleLabel!.leadingAnchor, constant: -10).isActive = true
         }
-        fourthButtons.forEach {
-            $0.imageView?.trailingAnchor.constraint(equalTo: $0.titleLabel!.leadingAnchor, constant: -10).isActive = true
-        }
-
     }
 
 //    MARK: - Private func
@@ -192,10 +181,19 @@ class ViewController: UIViewController {
         return button
     }()
 
-    let picCam = UIImage(named: "camera")!
-    let picNote = UIImage(named: "note")!
-    let picPhoto = UIImage(named: "photo")!
-    let picClip = UIImage(named: "clip")!
+
+    private func createImage(name: String) -> UIImage {
+        guard let image = UIImage(named: name)
+            else {
+                return UIImage.remove }
+
+        return image
+    }
+
+    private lazy var picCam = createImage(name: "camera")
+    private lazy var picNote = createImage(name: "note")
+    private lazy var picPhoto = createImage(name: "photo")
+    private lazy var picClip = createImage(name: "clip")
 
     private lazy var storyButton = createVerticalButton(image: picCam, title: Strings.storyButton)
     private lazy var noteButton = createVerticalButton(image: picNote, title: Strings.noteButton)
@@ -225,19 +223,19 @@ class ViewController: UIViewController {
         return button
     }
 
-    let picCity = UIImage(named: "house")
-    let picSubs = UIImage(named: "waves")
-    let picWork = UIImage(named: "case")
-    let picGift = UIImage(named: "snow")
-    let picInfo = UIImage(named: "exclamation")
+    private lazy var picCity = createImage(name: "house")
+    private lazy var picSubs = createImage(name: "waves")
+    private lazy var picWork = createImage(name: "case")
+    private lazy var picGift = createImage(name: "snow")
+    private lazy var picInfo = createImage(name: "exclamation")
 
-    let picOnline = UIImage(named: "online")
+    private lazy var picOnline = createImage(name: "online")
 
-    private lazy var cityButton = createHorizontalButton(image: picCity!, title: Strings.cityButton, color: Color.onlineLabel)
-    private lazy var subsButton = createHorizontalButton(image: picSubs!, title: Strings.subsButton, color: Color.onlineLabel)
-    private lazy var workButton = createHorizontalButton(image: picWork!, title: Strings.workButton, color: Color.systemBlue)
-    private lazy var giftButton = createHorizontalButton(image: picGift!, title: Strings.giftButton, color: Color.giftButton)
-    private lazy var infoButton = createHorizontalButton(image: picInfo!, title: Strings.infoButton, color: Color.infoButton)
+    private lazy var cityButton = createHorizontalButton(image: picCity, title: Strings.cityButton, color: Color.onlineLabel)
+    private lazy var subsButton = createHorizontalButton(image: picSubs, title: Strings.subsButton, color: Color.onlineLabel)
+    private lazy var workButton = createHorizontalButton(image: picWork, title: Strings.workButton, color: Color.systemBlue)
+    private lazy var giftButton = createHorizontalButton(image: picGift, title: Strings.giftButton, color: Color.giftButton)
+    private lazy var infoButton = createHorizontalButton(image: picInfo, title: Strings.infoButton, color: Color.infoButton)
 
 //    MARK: - enum
 
